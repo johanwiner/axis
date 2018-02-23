@@ -1,0 +1,14 @@
+Fpp is a file pre processor tool which interprets .fpp files and outputs
+a processed files where the #if preprocessor instructions has been dealt with.
+
+
+Install filepp using 
+sudo apt install filepp
+
+
+Run filepp on a file test_fpp.fpp by calling
+
+filepp -Dfoo=yes test_file_fpp.fpp
+
+where -Dfoo sends the parameter named foo into the preprocessor.
+

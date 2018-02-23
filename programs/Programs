@@ -1,0 +1,129 @@
+# Programs I used on Axis
+
+#----------------------------------Tangotasmania-------------------------------
+
+# Cmake and Ninja
+
+sudo apt-get install ninja-build
+sudo apt-get install cmake
+
+
+# Arm cross-compiler for linux 32-bit
+
+From https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads
+
+
+# Picocom to listen to output from MCU over UART
+
+sudo apt-get install picocom
+
+Run with
+sudo picocom -b 115200 --imap lfcrlf /dev/ttyUSB0
+
+Close with
+ctrl + A + X
+
+
+# ST-link to flash firmware to MCU (stm32f407)
+
+Can be found at 
+https://github.com/texane/stlinkhttps://github.com/texane/stlink
+
+Alse needs libusb
+sudo apt-get install libusb-1.0-0-dev
+
+Unzip and run make.
+Move the binary from build/Releases/[version] to home/[username]/bin
+
+Flash fw to MCU
+sudo ~/bin/st-flash --reset write [build/fw_image.bin] 0x08000000
+
+
+GCC/GDB
+
+Build and flash fw as usually.
+
+You also need
+sudo apt-get install lib32ncurses5         
+
+Make sure that the "st-util" file is precent in ~/bin, also located in st-link folder
+stlink-master/build/Release/src/gdbserver
+
+Start debugging by calling, from folder containing "xbuild_start.sh"
+~/bin/gcc-arm-none-eabi-5_4-2016q3/bin/arm-none-eabi-gdb build/fw_image
+
+In separate terminal run
+sudo ~/bin/st-util
+
+Then in original terminal run
+target remote : 4242
+
+
+#----------------------------------stmCube32mx---------------------------------
+
+Program used for generating low level code setting up the stm32 MCU's pins 
+using the (HAL-lib)
+
+http://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-configurators-and-code-generators/stm32cubemx.html
+
+Unzpi.
+
+Run
+./SetupSTM32CubeMX-4.21.0.linux
+
+
+
+#----------------------------------OpenEmbedded--------------------------------
+
+Make sure open embedded in installed using 
+sudo apt list axis-dev-openembedded
+
+Otherwise use apt-get
+
+
+Clone oe-setup
+
+git clone ssh://gittools.se.axis.com:29418/tools/oe-setup.git
+source oe-setup.sh
+
+
+Create folder
+~/home/<username>/dists
+
+Run 
+oe-setup -w <work_dir_name> -m <manifest file> -b <branch>
+oe-setup -w 08_06_2017_tango -m projects/tangotasmania.xml -b pre-topic/tangotasmania/manifest
+
+Set up a machine
+oe-initenv -m <camera>
+
+Build
+bitbake axis-image-cvp
+
+#------------------------------------Wireshark---------------------------------
+
+Give wireshark the rights it needs
+sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
+
+Check that the folder  dumpcap has executable rights
+ls -l /usr/bin/d 
+
+
+#------------------------------------Doxygen-----------------------------------
+
+git clone https://github.com/doxygen/doxygen.git
+mkdir build
+cd build
+cmake -G "Unix Makefiles" ..
+make
+make install
+
+Generate config file with doxygen settings
+doxygen -g [config file name]
+
+Generate html from config file
+doxygen [config file name]
+
+
+-------------------------------------------------------------------------------
+

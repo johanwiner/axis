@@ -10,10 +10,13 @@ Content
 
 -.gitignore 	(File to make sure some things does not get commited to the git
 		 repo.)
+
 -cppcheck 	(*.c file to check that cppcheck, which is a linter, discoveres
 		 common bugs in programs)
--
 
+-fpp		(File pre processor for configuring files during build-time)
+
+-programs	(Documentation of useful programs)
 
 -------------------------------------------------------------------------------
 

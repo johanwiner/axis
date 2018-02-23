@@ -1,0 +1,2 @@
+# Ignore untracked files inside any build directory
+cppcheck/build/

@@ -1,2 +1,23 @@
-Repository containing useful scripts and programs developed during my time at axis to improve my development process.
+#Created 2018-02-23 by Johan
+
+-------------------------------------------------------------------------------
+Repository containing useful scripts and programs developed during my time at
+axis to improve my development process.
+
+
+-------------------------------------------------------------------------------
+Content
+
+-.gitignore 	(File to make sure some things does not get commited to the git
+		 repo.)
+-cppcheck 	(*.c file to check that cppcheck, which is a linter, discoveres
+		 common bugs in programs)
+-
+
+
+-------------------------------------------------------------------------------
+
+
+
+
 

@@ -1,0 +1,4 @@
+Run script with ./shell_test_grep.sh
+
+It looks for iobox.conf and Enabled=yes/no, and echos a line, without printing the return form grep.
+
